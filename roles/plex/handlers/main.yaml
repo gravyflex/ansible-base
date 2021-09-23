@@ -1,0 +1,30 @@
+---
+
+# Systemd Reload
+- name: systemctl-daemon-reload
+  shell: systemctl daemon-reload
+
+# Enable and Mount cifs Volumes
+- name: Enable mnt-lullabies.mount
+  ansible.builtin.service:
+    name: mnt-lullabies.mount
+    enabled: yes
+    state: started
+
+- name: Enable mnt-music.mount
+  ansible.builtin.service:
+    name: mnt-music.mount
+    enabled: yes
+    state: started
+
+- name: Enable opt-media1.mount
+  ansible.builtin.service:
+    name: opt-media1.mount
+    enabled: yes
+    state: started
+
+- name: Enable opt-media2.mount
+  ansible.builtin.service:
+    name: opt-media2.mount
+    enabled: yes
+    state: started

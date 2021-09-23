@@ -1,0 +1,8 @@
+---
+
+collections:
+  - name: ansible.posix
+  - name: penstack-ansible-plugins
+
+  #  - name: f5networks.f5_modules
+  #  source: https://cloud.redhat.com/api/automation-hub/

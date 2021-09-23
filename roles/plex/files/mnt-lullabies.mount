@@ -1,0 +1,13 @@
+[Unit]
+  Description=cifs mount script
+  Requires=network-online.target
+  After=network-online.service
+
+[Mount]
+  What=//10.168.15.1/lullabies
+  Where=/mnt/lullabies
+  Type=cifs
+  Options=username=zm,password=zoneminder,uid=root,gid=root,rw,file_mode=0777,dir_mode=0777,vers=3.0
+
+[Install]
+  WantedBy=multi-user.target

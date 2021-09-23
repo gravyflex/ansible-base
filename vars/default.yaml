@@ -1,0 +1,61 @@
+---
+
+# base role vars
+default_apps: 
+admin_fullname: Shane Greaves
+admin_username: gravyflex
+admin_group: gravyflex
+admin_password: system
+admin_sudo_opt: 'ALL=(ALL) NOPASSWD:ALL'
+admin_ssh_pubkey: shane_key.pub
+admin_timezone: America/Winnipeg
+
+# HASS 
+telegram_token: '566343975:AAG_QFFsdlsvHXZsBtZvevOAenzY2B9I9kE'
+telegram_group: '-235629047'
+telegram_msg_title: "HASS Backup to FreeNas"
+telegram_msg_body: "Backup"
+telegram_notify_script: '/usr/local/bin/nst'
+hass_privkey_path: /home/hass/.ssh/hass
+hass_excludes: ['deps']
+hass_path: /home/hass/.homeassistant/
+hass_user: hass
+hass_group: hass
+hass_venv_path: /opt/homeassistant/hass/bin/pip3
+nas_path: /mnt/citadel/backup/hass/
+nas_host: 10.168.20.4
+
+################## Plex ##############
+# Plex User and Group
+plex_user: plex
+plex_group: plex
+
+# Storage interface
+sto_iface_name: ens19
+sto_iface_address: 10.168.15.73
+sto_iface_mask: 255.255.255.0
+
+# Mounts
+cifs_server: 10.168.15.1
+options_plex: "username=zm,password=zoneminder,uid=root,gid=root,rw,file_mode=0777,dir_mode=0777,vers=3.0"
+options_root: "username=zm,password=zoneminder,uid=root,gid=root,rw,file_mode=0777,dir_mode=0777,vers=3.0"
+lullabies:
+  name: mnt-lullabies.mount
+  local: /mnt/lullabies
+  remote: "//{{cifs_server}}/lullabies"
+  options: "{{options_root}}"
+music:
+  name: mnt-music.mount
+  local: /mnt/music
+  remote: "//{{cifs_server}}/music"
+  options: "{{options_plex}}"
+media1:
+  name: opt-media1.mount
+  local: /opt/media1
+  remote: "//{{cifs_server}}/media1"
+  options: "{{options_plex}}"
+media2:
+  name: opt-media2.mount
+  local: /opt/media2
+  remote: "//{{cifs_server}}/media2"
+  options: "{{options_plex}}"

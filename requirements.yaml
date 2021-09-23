@@ -1,0 +1,12 @@
+---
+
+# Used only for test-kitchen
+- hosts: all
+  become: true
+  
+  roles:
+    - role: base
+    - role: hass
+    # - role: plex
+    #  when: "'homeassistant' in group_names"
+    

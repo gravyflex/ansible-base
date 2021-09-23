@@ -1,0 +1,35 @@
+---
+driver:
+  name: vagrant
+
+# https://alexharv074.github.io/2016/05/25/testing-an-ansible-role-using-test-kitchen.html
+provisioner:
+  #name: ansible_playbook
+  name: ansible_push #https://github.com/ahelal/kitchen-ansiblepush
+  playbook: ./requirements.yaml
+  hosts: test-kitchen
+  sudo: true
+  sudo_user: root
+  remote_user: vagrant
+  ansible_config: "~/.ansible/ansible.cfg"
+  # verbose: "vvvv"
+  # roles_path: roles
+  require_ansible_repo: true
+  require_chef_for_busser: false
+  ansible_version: latest
+  chef_bootstrap_url: nil
+  # requirements_path: requirements.yml
+
+verifier:
+  name: inspec
+  inspec_tests:
+    - test/integration
+
+platforms:
+  - name: ubuntu-18.04
+  - name: ubuntu-20.04
+
+suites:
+  - name: default
+    run_list:
+    attributes: 

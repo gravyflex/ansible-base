@@ -1,0 +1,22 @@
+---
+
+# route -n | grep UG | awk '{ print $2 }' | head -n 1
+# ip route show | head -n 1 | awk '{print $3}'
+# /etc/systemd/timesyncd.conf
+# ansible_default_ipv4 gateway
+
+- name: debug gateway
+  debug:
+    msg: The default gateway is "{{ ansible_default_ipv4.gateway }}"
+
+- name: adding NTP server which is the defalt gateway
+  lineinfile: dest='/etc/systemd/timesyncd.conf' line="NTP={{ ansible_default_ipv4.gateway }}" insertafter='EOF' regex="#NTP=" state=present
+
+- name: enable systemd-timesyncd
+  ansible.builtin.service:
+    name: systemd-timesyncd
+    enabled: yes
+    state: started
+- name: "set timezone to {{ admin_timezone }}"
+  community.general.timezone:
+    name: "{{ admin_timezone }}"
