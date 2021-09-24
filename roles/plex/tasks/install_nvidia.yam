@@ -1,7 +1,0 @@
-NVIDIA-Linux-x86_64-470.63.01.run
-sudo update-initramfs -u
-
-rsync --progress -v -a --delete /var/lib/plexmediaserver/ root@10.168.20.42:/var/lib/plexmediaserver/
-
-http://10.168.20.146:32400/web/index.html#!/
-

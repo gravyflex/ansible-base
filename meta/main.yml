@@ -1,0 +1,20 @@
+---
+
+galaxy_info:
+  author: Shane Greaves
+  description: Install and Configure HomelAB
+  company: Flex Soft
+  role_name: base
+  namespace: shane_greaves
+  license: license (GPL-2.0-or-later)
+
+  min_ansible_version: 2.1
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 20.04
+
+  galaxy_tags: []
+
+dependencies: []

@@ -5,8 +5,4 @@
   become: true
 
   roles:
-   - role: base
-   - role: hass
-     when: "'homeassistant' in group_names"
-   - role: plex
-     when: "'plex' in group_names"
+    - role: shane_greaves.base

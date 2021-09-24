@@ -3,10 +3,10 @@
 - name: include default vars file
   include_vars: vars/default.yaml
 
-- name: Install common apps
-  become: yes
+- name: install common apps
+  become: true
   apt:
-    update_cache: yes
+    update_cache: true
     pkg:
       - qemu-guest-agent
       - htop
@@ -23,7 +23,7 @@
     comment: "{{ admin_fullname }}"
     group: "{{ admin_group }}"
     groups: adm, sudo
-    append: yes
+    append: true
     state: present
 - name: Create .ssh directory
   file:
@@ -47,14 +47,10 @@
     mode: 0440
     owner: root
     group: root
-  when: allow_nopasswd_sudo == true
+  when: allow_nopasswd_sudo
 
 - name: setup NTP server via systemd timesyncd
   import_tasks: timesyncd.yaml
 
 - name: Upgrade packages via APT
   import_tasks: apt_update.yaml
-
-#- name: setup telegram-notify-send
-#  import_tasks:lab_admin telegram_notify_send.yaml
-#  when: telegram_nst_enable == true
